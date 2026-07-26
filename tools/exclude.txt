@@ -1,0 +1,14 @@
+# 每行一個要排除的圖（無文字的底圖、出圖瑕疵）。格式：slug/檔名
+chrysanthemum/1.jpg
+chrysanthemum/2.jpg
+chrysanthemum/3.jpg
+chrysanthemum/4.jpg
+chrysanthemum/5.jpg
+goji/1.jpg
+goji/3.jpg
+hawthorn/4.jpg
+hawthorn/5.jpg
+hawthorn/6.jpg
+jujube/1.jpg
+jujube/2.jpg
+jujube/3.jpg

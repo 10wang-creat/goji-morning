@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFF6EA">
+<title>今天的問候圖 · 遇見中藥</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{
+    --ink:#5A4632; --soft:#8B7355; --line:#EFE2D2;
+    --bg:#FFF6EA; --card:#FFFFFF; --line-green:#06C755; --accent:#C7553F;
+  }
+  body{
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--bg); color:var(--ink); font-size:19px; line-height:1.7;
+    padding-bottom:40px;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px}
+  header{text-align:center;padding:22px 0 6px}
+  header .greet{font-size:30px;font-weight:700;color:var(--accent);letter-spacing:2px}
+  header .date{font-size:17px;color:var(--soft);margin-top:4px}
+
+  .photo{
+    background:var(--card);border-radius:22px;overflow:hidden;margin-top:16px;
+    box-shadow:0 6px 22px rgba(150,110,70,.13);
+  }
+  .photo img{width:100%;height:auto;display:block}
+
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;border:none;border-radius:18px;cursor:pointer;
+    font-family:inherit;font-size:23px;font-weight:700;padding:20px 16px;margin-top:14px;
+    text-decoration:none;
+  }
+  .btn-line{background:var(--line-green);color:#fff;box-shadow:0 6px 16px rgba(6,199,85,.35)}
+  .btn-save{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+  .btn-ghost{background:transparent;color:var(--soft);font-size:20px;font-weight:500;padding:14px;border:2px solid var(--line)}
+  .btn:active{transform:scale(.98)}
+  .row{display:flex;gap:12px}
+  .row .btn{margin-top:12px}
+
+  .hint{
+    text-align:center;color:var(--soft);font-size:17px;margin-top:14px;line-height:1.8;
+  }
+  .quote{
+    background:#fff;border:1px dashed var(--line);border-radius:16px;
+    padding:14px 16px;margin-top:14px;text-align:center;font-size:19px;color:var(--soft)
+  }
+  .quote b{color:var(--ink);font-size:21px}
+
+  /* 全部圖片 */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .grid img{width:100%;border-radius:14px;display:block;background:#fff;box-shadow:0 3px 10px rgba(150,110,70,.12)}
+  .gtitle{font-size:22px;font-weight:700;margin:22px 0 2px;color:var(--accent)}
+  .gsub{font-size:16px;color:var(--soft)}
+
+  .topbar{display:flex;align-items:center;gap:12px;padding:16px 0 4px}
+  .back{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 18px;font-size:19px;color:var(--ink);cursor:pointer;font-family:inherit}
+  .topbar h2{font-size:22px;font-weight:700}
+
+  .hidden{display:none !important}
+
+  /* 教學彈窗 */
+  .mask{position:fixed;inset:0;background:rgba(60,40,25,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
+  .modal{background:#fff;border-radius:22px;padding:24px;max-width:420px;width:100%}
+  .modal h3{font-size:24px;color:var(--accent);margin-bottom:12px;text-align:center}
+  .step{display:flex;gap:12px;align-items:flex-start;margin:12px 0;font-size:19px}
+  .num{flex:0 0 34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:34px;font-weight:700}
+  footer{text-align:center;color:var(--soft);font-size:16px;padding:28px 0 10px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- 首頁 -->
+  <section id="home">
+    <header>
+      <div class="greet" id="greetText">早安</div>
+      <div class="date" id="dateText"></div>
+    </header>
+
+    <div class="photo"><img id="todayImg" alt="今天的問候圖" src=""></div>
+    <div class="hint" id="todayFrom" style="margin-top:8px"></div>
+
+    <button class="btn btn-line" onclick="sharePic()">
+      <span>💬</span><span>傳給家人</span>
+    </button>
+
+    <div class="row">
+      <button class="btn btn-ghost" onclick="nextPic()">🔄 換一張</button>
+      <button class="btn btn-ghost" onclick="go('gallery')">🌿 看全部</button>
+    </div>
+
+    <div class="quote">
+      今天想說的話：<br><b id="greetLine">早安，願你今天平安順心 🌿</b><br>
+      <button class="btn btn-ghost" style="margin-top:10px" onclick="copyLine()">📋 複製這句話</button>
+    </div>
+  </section>
+
+  <!-- 全部圖片 -->
+  <section id="gallery" class="hidden">
+    <div class="topbar">
+      <button class="back" onclick="go('home')">← 回首頁</button>
+      <h2>全部問候圖</h2>
+    </div>
+    <div id="galleryBody"></div>
+  </section>
+
+  <!-- 單張 -->
+  <section id="detail" class="hidden">
+    <div class="topbar">
+      <button class="back" onclick="go('gallery')">← 回上一頁</button>
+      <h2 id="detailTitle"></h2>
+    </div>
+    <div class="photo"><img id="detailImg" alt="問候圖" src=""></div>
+    <button class="btn btn-line" onclick="sharePic()"><span>💬</span><span>傳給家人</span></button>
+    <div class="hint">按一下上面的綠色按鈕，就可以直接傳到 LINE 給家人或群組。</div>
+  </section>
+
+  <footer>遇見中藥 Meet the Herbs · 本草工作室</footer>
+</div>
+
+<!-- 存圖教學 -->
+<div class="mask hidden" id="howto" onclick="if(event.target===this)closeHowto()">
+  <div class="modal">
+    <h3>怎麼傳到 LINE？</h3>
+    <div class="step"><div class="num">1</div><div>先按下面的<b>「儲存圖片」</b>，圖會存進手機相簿</div></div>
+    <div class="step"><div class="num">2</div><div>打開 LINE，進入想傳的群組或聊天室</div></div>
+    <div class="step"><div class="num">3</div><div>按左下角的 <b>圖片</b> 圖示，選剛存好的圖，送出</div></div>
+    <a class="btn btn-save" id="saveLink" href="" download="問候圖.jpg">💾 儲存圖片</a>
+    <button class="btn btn-ghost" onclick="closeHowto()">關閉</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+  // ---------- 資料 ----------
+  var currentFile = null;
+  const ALL = [];
+  TOPICS.forEach(t => t.files.forEach(f => ALL.push({
+    src: 'images/' + t.slug + '/' + f, name: t.name, year: t.year, num: t.num
+  })));
+
+  // ---------- 今日問候 ----------
+  const now = new Date();
+  const h = now.getHours();
+  const greet = h < 11 ? '早安' : (h < 17 ? '午安' : '晚安');
+  const lines = {
+    '早安': '早安，願你今天平安順心 🌿',
+    '午安': '午安，記得喝口溫水，慢慢來 🍵',
+    '晚安': '晚安，今天辛苦了，好好休息 🌙'
+  };
+  document.getElementById('greetText').textContent = greet;
+  document.getElementById('greetLine').textContent = lines[greet];
+  const wd = ['日','一','二','三','四','五','六'][now.getDay()];
+  document.getElementById('dateText').textContent =
+    now.getFullYear() + ' 年 ' + (now.getMonth()+1) + ' 月 ' + now.getDate() + ' 日　星期' + wd;
+
+  // 今天固定一張（每天自動換）
+  const seed = now.getFullYear()*10000 + (now.getMonth()+1)*100 + now.getDate();
+  let idx = seed % ALL.length;
+  let current = null;
+
+  function showToday(){
+    current = ALL[idx];
+    document.getElementById('todayImg').src = current.src;
+    document.getElementById('todayFrom').textContent = '本週主題：' + current.name;
+    prefetch(current.src);
+  }
+  function nextPic(){
+    idx = (idx + 1 + Math.floor(Math.random()*7)) % ALL.length;
+    showToday();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  showToday();
+
+  // ---------- 傳給家人 ----------
+  // 先把圖片抓成檔案備好，按下按鈕時才能「直接」叫出分享（手機才不會被擋）
+  function prefetch(src){
+    currentFile = null;
+    fetch(src).then(function(r){ return r.blob(); }).then(function(b){
+      if(current && current.src === src){
+        currentFile = new File([b], '問候圖.jpg', {type:'image/jpeg'});
+      }
+    }).catch(function(){});
+  }
+
+  function sharePic(){
+    if(currentFile && navigator.canShare && navigator.canShare({files:[currentFile]})){
+      navigator.share({files:[currentFile]}).catch(function(e){
+        if(!e || e.name !== 'AbortError') openHowto(current.src);
+      });
+      return;
+    }
+    openHowto(current.src);
+  }
+  function openHowto(src){
+    document.getElementById('saveLink').href = src;
+    document.getElementById('howto').classList.remove('hidden');
+  }
+  function closeHowto(){ document.getElementById('howto').classList.add('hidden'); }
+
+  function copyLine(){
+    const t = document.getElementById('greetLine').textContent;
+    navigator.clipboard.writeText(t).then(function(){
+      alert('已複製，可以直接貼到 LINE 囉');
+    }, function(){ alert(t); });
+  }
+
+  // ---------- 換頁 ----------
+  function go(id){
+    ['home','gallery','detail'].forEach(function(s){
+      document.getElementById(s).classList.add('hidden');
+    });
+    document.getElementById(id).classList.remove('hidden');
+    if(id === 'gallery' && !document.getElementById('galleryBody').dataset.ready) buildGallery();
+    window.scrollTo(0,0);
+  }
+
+  function buildGallery(){
+    const box = document.getElementById('galleryBody');
+    let html = '';
+    TOPICS.forEach(function(t){
+      html += '<div class="gtitle">' + t.name + '</div>';
+      html += '<div class="gsub">' + t.year + ' 年</div>';
+      html += '<div class="grid">';
+      t.files.forEach(function(f){
+        const src = 'images/' + t.slug + '/' + f;
+        html += '<img loading="lazy" src="' + src + '" alt="' + t.name +
+                '" onclick="openDetail(\'' + src + '\',\'' + t.name + '\')">';
+      });
+      html += '</div>';
+    });
+    box.innerHTML = html;
+    box.dataset.ready = '1';
+  }
+
+  function openDetail(src, name){
+    current = {src:src, name:name};
+    document.getElementById('detailImg').src = src;
+    document.getElementById('detailTitle').textContent = name;
+    prefetch(src);
+    go('detail');
+  }
+</script>
+</body>
+</html>
