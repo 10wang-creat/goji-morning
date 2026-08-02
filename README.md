@@ -1,7 +1,9 @@
 # 🌿 今天的問候圖
 
 給家人轉發到 LINE 的每日問候圖網站。
-圖片來源：IG「遇見中藥 Meet the Herbs」每週五的「隨手語錄」。
+圖片來源：IG「遇見中藥 Meet the Herbs」——
+- **隨手語錄**：每週五那組，每個主題 3～6 張
+- **金句海報**：角色配一句話的單張海報。W34 以前在**週三第 3 張**，W35 起改到**週四第 3 張**（週三改成炮製工法圖，不收）
 
 網址：https://goji-morning.vercel.app
 
@@ -23,7 +25,9 @@
 
 ```
 index.html          網站本體（單一檔案，含樣式與程式）
-data.js             圖片清單（自動產生，勿手改）
+data.js             隨手語錄清單（自動產生，勿手改）
+gold.js             金句海報清單（自動產生，勿手改）
+gold/<藥材>.jpg      金句海報（每個主題一張）
 manifest.json       加到主畫面用的設定
 icons/              App 圖示
 images/<藥材>/N.jpg  圖片（已壓縮到 1080px、約 100KB）
@@ -45,6 +49,8 @@ tools/              產圖與產清單的腳本
 4. GitHub Desktop → Commit → Push → Vercel 自動更新
 
 不想上架的圖，在 `tools/exclude.txt` 加一行 `藥材代號/檔名.jpg`，再重跑 `gen_data.py`。
+
+金句海報要新增時，把該週的金句圖壓到 1080px、命名為 `gold/<藥材代號>.jpg`，並在 `gold.js` 加一筆 `{slug, name, num}`。
 
 ---
 

@@ -7,7 +7,6 @@
 <title>今天的問候圖 · 遇見中藥</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   :root{
@@ -57,6 +56,7 @@
   .grid img{width:100%;border-radius:14px;display:block;background:#fff;box-shadow:0 3px 10px rgba(150,110,70,.12)}
   .gtitle{font-size:22px;font-weight:700;margin:22px 0 2px;color:var(--accent)}
   .gsub{font-size:16px;color:var(--soft)}
+  .section{font-size:26px;font-weight:700;color:var(--ink);margin:30px 0 2px;padding-top:14px;border-top:2px solid var(--line)}
 
   .topbar{display:flex;align-items:center;gap:12px;padding:16px 0 4px}
   .back{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 18px;font-size:19px;color:var(--ink);cursor:pointer;font-family:inherit}
@@ -85,7 +85,6 @@
     </header>
 
     <div class="photo"><img id="todayImg" alt="今天的問候圖" src=""></div>
-    <div class="hint" id="todayFrom" style="margin-top:8px"></div>
 
     <button class="btn btn-line" onclick="sharePic()">
       <span>💬</span><span>傳給家人</span>
@@ -100,6 +99,8 @@
       今天想說的話：<br><b id="greetLine">早安，願你今天平安順心 🌿</b><br>
       <button class="btn btn-ghost" style="margin-top:10px" onclick="copyLine()">📋 複製這句話</button>
     </div>
+
+    <div class="hint" id="todayFrom"></div>
   </section>
 
   <!-- 全部圖片 -->
@@ -126,7 +127,7 @@
 </div>
 
 <!-- 存圖教學 -->
-<div class="mask hidden" id="howto" onclick="if(event.target===this)closeHowto()">
+<div class="mask hidden" id="howto">
   <div class="modal">
     <h3>怎麼傳到 LINE？</h3>
     <div class="step"><div class="num">1</div><div>先按下面的<b>「儲存圖片」</b>，圖會存進手機相簿</div></div>
@@ -138,13 +139,18 @@
 </div>
 
 <script src="data.js"></script>
+<script src="gold.js"></script>
 <script>
   // ---------- 資料 ----------
-  var currentFile = null;
   const ALL = [];
   TOPICS.forEach(t => t.files.forEach(f => ALL.push({
     src: 'images/' + t.slug + '/' + f, name: t.name, year: t.year, num: t.num
   })));
+  if (typeof GOLD !== 'undefined') {
+    GOLD.forEach(g => ALL.push({
+      src: 'gold/' + g.slug + '.jpg', name: g.name, num: g.num
+    }));
+  }
 
   // ---------- 今日問候 ----------
   const now = new Date();
@@ -170,7 +176,6 @@
     current = ALL[idx];
     document.getElementById('todayImg').src = current.src;
     document.getElementById('todayFrom').textContent = '本週主題：' + current.name;
-    prefetch(current.src);
   }
   function nextPic(){
     idx = (idx + 1 + Math.floor(Math.random()*7)) % ALL.length;
@@ -180,24 +185,20 @@
   showToday();
 
   // ---------- 傳給家人 ----------
-  // 先把圖片抓成檔案備好，按下按鈕時才能「直接」叫出分享（手機才不會被擋）
-  function prefetch(src){
-    currentFile = null;
-    fetch(src).then(function(r){ return r.blob(); }).then(function(b){
-      if(current && current.src === src){
-        currentFile = new File([b], '問候圖.jpg', {type:'image/jpeg'});
+  async function sharePic(){
+    const src = current.src;
+    try{
+      const res = await fetch(src);
+      const blob = await res.blob();
+      const file = new File([blob], '問候圖.jpg', {type:'image/jpeg'});
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        await navigator.share({files:[file]});
+        return;
       }
-    }).catch(function(){});
-  }
-
-  function sharePic(){
-    if(currentFile && navigator.canShare && navigator.canShare({files:[currentFile]})){
-      navigator.share({files:[currentFile]}).catch(function(e){
-        if(!e || e.name !== 'AbortError') openHowto(current.src);
-      });
-      return;
+    }catch(e){ /* 使用者取消或不支援，往下走 */
+      if(e && e.name === 'AbortError') return;
     }
-    openHowto(current.src);
+    openHowto(src);
   }
   function openHowto(src){
     document.getElementById('saveLink').href = src;
@@ -225,6 +226,19 @@
   function buildGallery(){
     const box = document.getElementById('galleryBody');
     let html = '';
+    if (typeof GOLD !== 'undefined' && GOLD.length) {
+      html += '<div class="section">✨ 金句海報</div>';
+      html += '<div class="gsub">角色說的一句話，配一張圖</div>';
+      html += '<div class="grid">';
+      GOLD.forEach(function(g){
+        const src = 'gold/' + g.slug + '.jpg';
+        html += '<img loading="lazy" src="' + src + '" alt="' + g.name +
+                '" onclick="openDetail(\'' + src + '\',\'' + g.name + '\')">';
+      });
+      html += '</div>';
+    }
+    html += '<div class="section">🌿 隨手語錄</div>';
+    html += '<div class="gsub">每週五的詩意小語，依藥材分組</div>';
     TOPICS.forEach(function(t){
       html += '<div class="gtitle">' + t.name + '</div>';
       html += '<div class="gsub">' + t.year + ' 年</div>';
@@ -244,7 +258,6 @@
     current = {src:src, name:name};
     document.getElementById('detailImg').src = src;
     document.getElementById('detailTitle').textContent = name;
-    prefetch(src);
     go('detail');
   }
 </script>
