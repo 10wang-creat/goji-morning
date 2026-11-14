@@ -9,23 +9,8 @@ DST = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = sys.argv[1] if len(sys.argv) > 1 else next(iter(glob.glob("/sessions/*/mnt/IG貼圖")), "")
 MAX, QUALITY = 1080, 82
 
-SLUG = {
- "01":"goji","02":"chrysanthemum","03":"jujube","04":"hawthorn","05":"gathering",
- "06":"winter-tonic","07":"ginger","08":"longan","09":"astragalus",
- "10":"angelica","11":"tangerine","12":"lotusseed","13":"newyear","14":"spring-festival",
- "15":"rose","16":"coix","17":"mint","18":"cassia","19":"honeysuckle","20":"spring-liver",
- "21":"poria","22":"lotusleaf","23":"lily","24":"guyu","25":"loquat","26":"mugwort",
- "27":"mungbean","28":"mume","29":"ophiopogon","30":"apricot","31":"dragonboat","32":"sanfu",
- "33":"coptis","34":"yam","35":"paozhi","36":"dashu","37":"euryale","38":"fritillaria",
-}
-CN = {"一":1,"二":2,"三":3,"四":4,"五":5}
-
-def order(name):
-    s = re.sub(r"^(星期|週|周)", "", name.strip())
-    m = re.match(r"(\d+)", s)
-    if m: return int(m.group(1))
-    if s and s[0] in CN: return CN[s[0]]
-    return 99
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from slugs import SLUG, order
 
 def topic_num(name):
     m = re.match(r"\s*(\d+)", name)

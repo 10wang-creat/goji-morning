@@ -1,420 +1,57 @@
 // 由 tools/gen_data.py 自動產生，請勿手動編輯
 const TOPICS = [
- {
-  "slug": "fritillaria",
-  "name": "川貝",
-  "year": 2026,
-  "num": 38,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "euryale",
-  "name": "芡實",
-  "year": 2026,
-  "num": 37,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "dashu",
-  "name": "大暑祛濕聯動週",
-  "year": 2026,
-  "num": 36,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "paozhi",
-  "name": "中藥炮製周",
-  "year": 2026,
-  "num": 35,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "yam",
-  "name": "山藥",
-  "year": 2026,
-  "num": 34,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "coptis",
-  "name": "黃連",
-  "year": 2026,
-  "num": 33,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "sanfu",
-  "name": "三伏天聯動周",
-  "year": 2026,
-  "num": 32,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "dragonboat",
-  "name": "端午聯動周",
-  "year": 2026,
-  "num": 31,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "apricot",
-  "name": "杏仁",
-  "year": 2026,
-  "num": 30,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "ophiopogon",
-  "name": "麥冬",
-  "year": 2026,
-  "num": 29,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "mume",
-  "name": "烏梅",
-  "year": 2026,
-  "num": 28,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "mungbean",
-  "name": "綠豆",
-  "year": 2026,
-  "num": 27,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "mugwort",
-  "name": "艾草",
-  "year": 2026,
-  "num": 26,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "loquat",
-  "name": "枇杷",
-  "year": 2026,
-  "num": 25,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "guyu",
-  "name": "穀雨養生聯動週",
-  "year": 2026,
-  "num": 24,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "lily",
-  "name": "百合",
-  "year": 2026,
-  "num": 23,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "lotusleaf",
-  "name": "荷葉",
-  "year": 2026,
-  "num": 22,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "poria",
-  "name": "茯苓",
-  "year": 2026,
-  "num": 21,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "spring-liver",
-  "name": "春季養肝聯動周",
-  "year": 2026,
-  "num": 20,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "honeysuckle",
-  "name": "金銀花",
-  "year": 2026,
-  "num": 19,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "cassia",
-  "name": "決明子",
-  "year": 2026,
-  "num": 18,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "mint",
-  "name": "薄荷",
-  "year": 2026,
-  "num": 17,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "coix",
-  "name": "薏仁",
-  "year": 2026,
-  "num": 16,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "rose",
-  "name": "玫瑰",
-  "year": 2026,
-  "num": 15,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "spring-festival",
-  "name": "春節特輯",
-  "year": 2026,
-  "num": 14,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "newyear",
-  "name": "年前養生特輯",
-  "year": 2026,
-  "num": 13,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "lotusseed",
-  "name": "蓮子",
-  "year": 2026,
-  "num": 12,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "tangerine",
-  "name": "陳皮",
-  "year": 2026,
-  "num": 11,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "angelica",
-  "name": "當歸",
-  "year": 2026,
-  "num": 10,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "astragalus",
-  "name": "黃耆",
-  "year": 2025,
-  "num": 9,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "longan",
-  "name": "桂圓",
-  "year": 2025,
-  "num": 8,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "ginger",
-  "name": "生薑哥哥週",
-  "year": 2025,
-  "num": 7,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "winter-tonic",
-  "name": "冬令進補",
-  "year": 2025,
-  "num": 6,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "gathering",
-  "name": "四位角色大集合",
-  "year": 2025,
-  "num": 5,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "hawthorn",
-  "name": "山楂",
-  "year": 2025,
-  "num": 4,
-  "files": [
-   "1.jpg",
-   "2.jpg",
-   "3.jpg"
-  ]
- },
- {
-  "slug": "jujube",
-  "name": "紅棗",
-  "year": 2025,
-  "num": 3,
-  "files": [
-   "4.jpg",
-   "5.jpg",
-   "6.jpg"
-  ]
- },
- {
-  "slug": "chrysanthemum",
-  "name": "菊花",
-  "year": 2025,
-  "num": 2,
-  "files": [
-   "6.jpg"
-  ]
- },
- {
-  "slug": "goji",
-  "name": "枸杞",
-  "year": 2025,
-  "num": 1,
-  "files": [
-   "2.jpg",
-   "4.jpg",
-   "5.jpg",
-   "6.jpg"
-  ]
- }
+ {"slug": "gastrodia", "name": "天麻姐姐", "num": 54, "m": 11, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "lidong", "name": "立冬進補聯動週", "num": 53, "m": 11, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "pumpkinseed", "name": "南瓜子弟弟", "num": 52, "m": 11, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "heshouwu", "name": "何首烏爺爺", "num": 51, "m": 11, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "cinnamon", "name": "肉桂哥哥", "num": 50, "m": 11, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "shuangjiang", "name": "霜降時節的滋陰養生", "num": 49, "m": 10, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "eucommia", "name": "杜仲大叔", "num": 48, "m": 10, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "malt", "name": "麥芽弟弟", "num": 47, "m": 10, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "ejiao", "name": "阿膠姊姊", "num": 46, "m": 10, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "midautumn", "name": "中秋特別週", "num": 45, "m": 9, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true, "fest": "midautumn"},
+ {"slug": "walnut", "name": "核桃大叔", "num": 44, "m": 9, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "schisandra", "name": "五味子", "num": 43, "m": 9, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "mulberryleaf", "name": "桑葉妹妹", "num": 42, "m": 9, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "chushu", "name": "處暑潤燥聯動週", "num": 41, "m": 8, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "honey", "name": "蜂蜜", "num": 40, "m": 8, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "blacksesame", "name": "黑芝麻", "num": 39, "m": 8, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "fritillaria", "name": "川貝", "num": 38, "m": 8, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "euryale", "name": "芡實", "num": 37, "m": 8, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "dashu", "name": "大暑祛濕聯動週", "num": 36, "m": 7, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "paozhi", "name": "中藥炮製周", "num": 35, "m": 7, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "yam", "name": "山藥", "num": 34, "m": 7, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "coptis", "name": "黃連", "num": 33, "m": 7, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "sanfu", "name": "三伏天聯動周", "num": 32, "m": 7, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "dragonboat", "name": "端午聯動周", "num": 31, "m": 6, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true, "fest": "duanwu"},
+ {"slug": "apricot", "name": "杏仁", "num": 30, "m": 6, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "ophiopogon", "name": "麥冬", "num": 29, "m": 6, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "mume", "name": "烏梅", "num": 28, "m": 6, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "mungbean", "name": "綠豆", "num": 27, "m": 5, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "mugwort", "name": "艾草", "num": 26, "m": 5, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "loquat", "name": "枇杷", "num": 25, "m": 5, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "guyu", "name": "穀雨養生聯動週", "num": 24, "m": 4, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "lily", "name": "百合", "num": 23, "m": 4, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "lotusleaf", "name": "荷葉", "num": 22, "m": 4, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "poria", "name": "茯苓", "num": 21, "m": 4, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "spring-liver", "name": "春季養肝聯動周", "num": 20, "m": 4, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "honeysuckle", "name": "金銀花", "num": 19, "m": 3, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "cassia", "name": "決明子", "num": 18, "m": 3, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "mint", "name": "薄荷", "num": 17, "m": 3, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "coix", "name": "薏仁", "num": 16, "m": 3, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "rose", "name": "玫瑰", "num": 15, "m": 2, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": false},
+ {"slug": "spring-festival", "name": "春節特輯", "num": 14, "m": 2, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true, "fest": "cny"},
+ {"slug": "newyear", "name": "年前養生特輯", "num": 13, "m": 2, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": false, "fest": "cny"},
+ {"slug": "lotusseed", "name": "蓮子", "num": 12, "m": 1, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "tangerine", "name": "陳皮", "num": 11, "m": 1, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "angelica", "name": "當歸", "num": 10, "m": 1, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "astragalus", "name": "黃耆", "num": 9, "m": 1, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": false},
+ {"slug": "longan", "name": "桂圓", "num": 8, "m": 12, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": false},
+ {"slug": "ginger", "name": "生薑哥哥週", "num": 7, "m": 12, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": false},
+ {"slug": "winter-tonic", "name": "冬令進補", "num": 6, "m": 12, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": false},
+ {"slug": "gathering", "name": "四位角色大集合", "num": 5, "m": 12, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": false},
+ {"slug": "hawthorn", "name": "山楂", "num": 4, "m": 12, "files": ["1.jpg", "2.jpg", "3.jpg"], "gold": true},
+ {"slug": "jujube", "name": "紅棗", "num": 3, "m": 11, "files": ["4.jpg", "5.jpg", "6.jpg"], "gold": true},
+ {"slug": "chrysanthemum", "name": "菊花", "num": 2, "m": 11, "files": ["6.jpg"], "gold": true},
+ {"slug": "goji", "name": "枸杞", "num": 1, "m": 11, "files": ["2.jpg", "4.jpg", "5.jpg", "6.jpg"], "gold": false}
 ];
